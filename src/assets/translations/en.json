@@ -7,7 +7,15 @@
     "charts": "Charts",
     "calendar": "Calendar",
     "errPages": "Error Pages",
-    "modals": "Modals"
+  "modals": "Modals",
+  "staff": "Staff",
+  "checkups": "Preventive Checkups",
+  "diseases": "Disease Registry",
+  "hospitalizations": "Hospitalizations",
+  "equipment": "Equipment",
+  "reports": "Reports",
+  "settings": "Settings",
+  "help": "Help"
   },
   "login": {
     "loginHere": "Login Here",

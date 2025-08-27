@@ -18,9 +18,7 @@ import menus from "@configs/menus";
 import SidebarItem from "./sidebar-item";
 import useUserPreference from "@stores/user-preference";
 import clsx from "clsx";
-import LangDropdown from "@components/commons/lang-dropdown";
 import { useTheme } from "@components/theme/theme-provider";
-import SearchInput from "@components/inputs/search-input";
 import Logo from "@components/commons/logo";
 import { useModal } from "@saimin/react-modal-manager";
 import LogoutConfirmation from "@components/modals/logout-confirmation";
@@ -84,7 +82,6 @@ export function Header() {
                 icon={m.icon}
                 name={m.name}
                 route={m.route}
-                childs={m.childs}
                 closeSheet={setSheetOpen}
               />
             ))}
@@ -93,10 +90,7 @@ export function Header() {
       </Sheet>
 
       {/* ======== App Bar ======== */}
-      <div className="flex-1 flex gap-4 items-center justify-between">
-        <SearchInput />
-
-        <LangDropdown />
+  <div className="flex-1 flex gap-4 items-center justify-end">
 
         <Button
           onClick={handleToggleTheme}

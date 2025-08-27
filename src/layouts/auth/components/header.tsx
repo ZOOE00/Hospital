@@ -1,7 +1,6 @@
 import { Button } from "@components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import clsx from "clsx";
-import LangDropdown from "@components/commons/lang-dropdown";
 import { useTheme } from "@components/theme/theme-provider";
 import Logo from "@components/commons/logo";
 
@@ -26,9 +25,7 @@ export function Header() {
       <div className="flex-1 flex gap-4 items-center justify-between">
         <Logo />
 
-        <div className="flex gap-2">
-          <LangDropdown />
-
+  <div className="flex gap-2">
           <Button
             onClick={handleToggleTheme}
             variant="outline"
