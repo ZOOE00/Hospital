@@ -20,12 +20,23 @@ interface Props {
   filters?: FilterConfig[];
 }
 
-function CrudToolbar({ form, onAdd, searchPlaceholder = "Search...", filters = [] }: Props) {
+function CrudToolbar({
+  form,
+  onAdd,
+  searchPlaceholder = "Search...",
+  filters = [],
+}: Props) {
   return (
     <Between className="items-end">
       <Form {...form}>
-        <form className={clsx("flex flex-col sm:flex-row gap-4 w-full sm:w-auto")}> 
-          <TextInput placeholder={searchPlaceholder} name="search" form={form} />
+        <form
+          className={clsx("flex flex-col sm:flex-row gap-4 w-full sm:w-auto")}
+        >
+          <TextInput
+            placeholder={searchPlaceholder}
+            name="search"
+            form={form}
+          />
 
           {filters.map((f) => (
             <SelectInput

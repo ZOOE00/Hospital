@@ -43,9 +43,15 @@ export function DiseasesPage() {
             ],
           },
         ]}
-        onAdd={() => {/* open create modal */}}
-        onEdit={() => {/* open edit modal */}}
-        onDelete={() => {/* confirm delete */}}
+        onAdd={() => {
+          /* open create modal */
+        }}
+        onEdit={() => {
+          /* open edit modal */
+        }}
+        onDelete={() => {
+          /* confirm delete */
+        }}
       />
     </div>
   );

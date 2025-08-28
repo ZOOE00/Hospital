@@ -28,11 +28,20 @@ export function EquipmentPage() {
         initialData={mockEq}
         searchKeys={["name", "model", "serial"]}
         filterDefs={[
-          { name: "location", options: [{ label: "Диагностик", value: "Диагностикийн өрөө" }] },
+          {
+            name: "location",
+            options: [{ label: "Диагностик", value: "Диагностикийн өрөө" }],
+          },
         ]}
-        onAdd={() => {/* open create modal */}}
-        onEdit={() => {/* open edit modal */}}
-        onDelete={() => {/* confirm delete */}}
+        onAdd={() => {
+          /* open create modal */
+        }}
+        onEdit={() => {
+          /* open edit modal */
+        }}
+        onDelete={() => {
+          /* confirm delete */
+        }}
       />
     </div>
   );

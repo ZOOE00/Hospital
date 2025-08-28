@@ -11,10 +11,18 @@ export function UsersPage() {
       <CrudTable<UserRow>
         initialData={mockUsers}
         searchKeys={["username"]}
-        filterDefs={[{ name: "role", options: [{ label: "Admin", value: "admin" }] }]}
-        onAdd={() => {/* open create modal */}}
-        onEdit={() => {/* open edit modal */}}
-        onDelete={() => {/* confirm delete */}}
+        filterDefs={[
+          { name: "role", options: [{ label: "Admin", value: "admin" }] },
+        ]}
+        onAdd={() => {
+          /* open create modal */
+        }}
+        onEdit={() => {
+          /* open edit modal */
+        }}
+        onDelete={() => {
+          /* confirm delete */
+        }}
       />
     </div>
   );

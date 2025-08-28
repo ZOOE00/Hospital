@@ -25,7 +25,7 @@ export function Header() {
       <div className="flex-1 flex gap-4 items-center justify-between">
         <Logo />
 
-  <div className="flex gap-2">
+        <div className="flex gap-2">
           <Button
             onClick={handleToggleTheme}
             variant="outline"

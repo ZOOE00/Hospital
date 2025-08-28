@@ -26,7 +26,6 @@ export function Sidebar() {
               icon={m.icon}
               name={m.name}
               route={m.route}
-              childs={m.childs}
             />
           ))}
         </nav>

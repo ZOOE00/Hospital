@@ -31,10 +31,21 @@ export function HospitalizationsPage() {
       <CrudTable<HospRow>
         initialData={mockH}
         searchKeys={["hospital", "ward", "diagnosis"]}
-        filterDefs={[{ name: "outcome", options: [{ label: "Recovered", value: "recovered" }] }]}
-        onAdd={() => {/* open create modal */}}
-        onEdit={() => {/* open edit modal */}}
-        onDelete={() => {/* confirm delete */}}
+        filterDefs={[
+          {
+            name: "outcome",
+            options: [{ label: "Recovered", value: "recovered" }],
+          },
+        ]}
+        onAdd={() => {
+          /* open create modal */
+        }}
+        onEdit={() => {
+          /* open edit modal */
+        }}
+        onDelete={() => {
+          /* confirm delete */
+        }}
       />
     </div>
   );

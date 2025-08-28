@@ -7,9 +7,7 @@ export function HelpPage() {
         <CardHeader>
           <CardTitle>Тусламж</CardTitle>
         </CardHeader>
-        <CardContent>
-          Программын ашиглалтын заавар — placeholder
-        </CardContent>
+        <CardContent>Программын ашиглалтын заавар — placeholder</CardContent>
       </Card>
     </div>
   );

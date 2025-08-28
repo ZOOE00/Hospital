@@ -9,7 +9,14 @@ type CheckupRow = CrudRow & {
 };
 
 const mockC: CheckupRow[] = [
-  { id: 1, date: "2025-08-01", type: "full", doctor: "Др. Энх", org: "Цэргийн эмнэлэг", findingIcd: "Z00" },
+  {
+    id: 1,
+    date: "2025-08-01",
+    type: "full",
+    doctor: "Др. Энх",
+    org: "Цэргийн эмнэлэг",
+    findingIcd: "Z00",
+  },
 ];
 
 export function CheckupsPage() {
@@ -19,11 +26,24 @@ export function CheckupsPage() {
         initialData={mockC}
         searchKeys={["doctor", "org", "findingIcd"]}
         filterDefs={[
-          { name: "type", options: [{ label: "Full", value: "full" }, { label: "Partial", value: "partial" }, { label: "Repeat", value: "repeat" }] },
+          {
+            name: "type",
+            options: [
+              { label: "Full", value: "full" },
+              { label: "Partial", value: "partial" },
+              { label: "Repeat", value: "repeat" },
+            ],
+          },
         ]}
-        onAdd={() => {/* open create modal */}}
-        onEdit={() => {/* open edit modal */}}
-        onDelete={() => {/* confirm delete */}}
+        onAdd={() => {
+          /* open create modal */
+        }}
+        onEdit={() => {
+          /* open edit modal */
+        }}
+        onDelete={() => {
+          /* confirm delete */
+        }}
       />
     </div>
   );

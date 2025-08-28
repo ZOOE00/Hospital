@@ -1,4 +1,14 @@
-import { CircleGauge, Stethoscope, HeartPulse, BedDouble, Wrench, Users, Settings, HelpCircle, BarChart3 } from "lucide-react";
+import {
+  CircleGauge,
+  Stethoscope,
+  HeartPulse,
+  BedDouble,
+  Wrench,
+  Users,
+  Settings,
+  HelpCircle,
+  BarChart3,
+} from "lucide-react";
 
 const menus = [
   {
@@ -49,4 +59,3 @@ const menus = [
 ];
 
 export default menus;
-

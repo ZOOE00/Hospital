@@ -8,7 +8,8 @@ export function SettingsPage() {
           <CardTitle>Тохиргоо</CardTitle>
         </CardHeader>
         <CardContent>
-          Нөөцлөлт, сүлжээ/хост тохиргоо, хувилбар шинэчлэл, 2FA/SSL — placeholder
+          Нөөцлөлт, сүлжээ/хост тохиргоо, хувилбар шинэчлэл, 2FA/SSL —
+          placeholder
         </CardContent>
       </Card>
     </div>

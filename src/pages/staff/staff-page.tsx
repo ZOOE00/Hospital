@@ -32,12 +32,24 @@ export function StaffPage() {
         initialData={mockStaff}
         searchKeys={["name", "reg", "phone"]}
         filterDefs={[
-          { name: "gender", options: [{ label: "M", value: "M" }, { label: "F", value: "F" }] },
+          {
+            name: "gender",
+            options: [
+              { label: "M", value: "M" },
+              { label: "F", value: "F" },
+            ],
+          },
           { name: "unit", options: [{ label: "1-р анги", value: "1-р анги" }] },
         ]}
-        onAdd={() => {/* open create modal */}}
-        onEdit={() => {/* open edit modal */}}
-        onDelete={() => {/* confirm delete */}}
+        onAdd={() => {
+          /* open create modal */
+        }}
+        onEdit={() => {
+          /* open edit modal */
+        }}
+        onDelete={() => {
+          /* confirm delete */
+        }}
       />
     </div>
   );

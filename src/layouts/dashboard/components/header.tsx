@@ -90,8 +90,7 @@ export function Header() {
       </Sheet>
 
       {/* ======== App Bar ======== */}
-  <div className="flex-1 flex gap-4 items-center justify-end">
-
+      <div className="flex-1 flex gap-4 items-center justify-end">
         <Button
           onClick={handleToggleTheme}
           variant="outline"
