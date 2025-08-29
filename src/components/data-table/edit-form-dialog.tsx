@@ -32,11 +32,13 @@ export default function EditFormDialog<TForm>({
   onSubmit,
 }: Props<TForm>) {
   const form = useForm<Partial<TForm>>({ defaultValues: {} as any });
-  const [employeeOptions, setEmployeeOptions] = useState<{ value: string; label: string }[]>([]);
+  const [employeeOptions, setEmployeeOptions] = useState<
+    { value: string; label: string }[]
+  >([]);
 
   // Load employee options when dialog opens and contains employee-select field
   useEffect(() => {
-    const hasEmployeeSelect = fields.some(f => f.type === "employee-select");
+    const hasEmployeeSelect = fields.some((f) => f.type === "employee-select");
     if (open && hasEmployeeSelect) {
       getEmployeesForSelect().then(setEmployeeOptions);
     }

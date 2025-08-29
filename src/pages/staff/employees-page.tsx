@@ -77,11 +77,11 @@ const mockEmployees: EmployeeRow[] = [
 export function EmployeesPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Ажилтнууд" 
-        desc="Эмнэлгийн ажилтнуудын хувийн мэдээлэл болон удирдлага" 
+      <PageTitle
+        title="Ажилтнууд"
+        desc="Эмнэлгийн ажилтнуудын хувийн мэдээлэл болон удирдлага"
       />
-      
+
       <CrudTable<EmployeeRow>
         initialData={mockEmployees}
         searchKeys={["name", "employeeId", "phone", "email"]}
@@ -103,14 +103,14 @@ export function EmployeesPage() {
               { label: "Эмэгтэй", value: "F" },
             ],
           },
-          { 
-            name: "department", 
+          {
+            name: "department",
             options: [
               { label: "Дотоод эмнэлэг", value: "Дотоод эмнэлэг" },
               { label: "Хагалгааны тасаг", value: "Хагалгааны тасаг" },
               { label: "Удирдлага", value: "Удирдлага" },
               { label: "Лабораторийн тасаг", value: "Лабораторийн тасаг" },
-            ] 
+            ],
           },
           {
             name: "position",

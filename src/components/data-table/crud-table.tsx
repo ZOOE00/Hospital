@@ -54,7 +54,7 @@ export default function CrudTable<T extends CrudRow>({
     const keys = Object.keys(sample).filter((k) => k !== "id");
     const selectSet = new Set((filterDefs || []).map((f) => f.name));
     return keys.map((k) => {
-      const columnConfig = columnsConfig?.find(c => c.key === k);
+      const columnConfig = columnsConfig?.find((c) => c.key === k);
       const label = columnConfig?.title || humanize(k);
       return {
         name: k,
@@ -143,14 +143,14 @@ export default function CrudTable<T extends CrudRow>({
 
     // Auto columns from keys (id, name, etc.) for demo; in real modules, define explicit columns.
     const sample = data[0] || ({} as T);
-    const keysToShow = columnsConfig 
-      ? columnsConfig.map(c => c.key)
+    const keysToShow = columnsConfig
+      ? columnsConfig.map((c) => c.key)
       : Object.keys(sample);
-    
+
     keysToShow.forEach((key) => {
-      const columnConfig = columnsConfig?.find(c => c.key === key);
+      const columnConfig = columnsConfig?.find((c) => c.key === key);
       const title = columnConfig?.title || humanize(key);
-      
+
       base.push({
         accessorKey: key,
         header: ({ column }) => (

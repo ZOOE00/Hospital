@@ -67,11 +67,11 @@ const mockUsers: UserRow[] = [
 export function StaffPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Хэрэглэгчид" 
-        desc="Системийн хэрэглэгчдийн эрх болон ажилтанд холбогдсон мэдээлэл" 
+      <PageTitle
+        title="Хэрэглэгчид"
+        desc="Системийн хэрэглэгчдийн эрх болон ажилтанд холбогдсон мэдээлэл"
       />
-      
+
       <CrudTable<UserRow>
         initialData={mockUsers}
         searchKeys={["username", "email", "employeeName"]}
@@ -102,14 +102,14 @@ export function StaffPage() {
               { label: "Идэвхгүй", value: "inactive" },
             ],
           },
-          { 
-            name: "department", 
+          {
+            name: "department",
             options: [
               { label: "Дотоод эмнэлэг", value: "Дотоод эмнэлэг" },
               { label: "Хагалгааны тасаг", value: "Хагалгааны тасаг" },
               { label: "Удирдлага", value: "Удирдлага" },
               { label: "Лабораторийн тасаг", value: "Лабораторийн тасаг" },
-            ] 
+            ],
           },
         ]}
         onAdd={() => {

@@ -25,11 +25,11 @@ const mock: DiseaseRow[] = [
 export function DiseasesPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Өвчний бүртгэл" 
-        desc="Өвчлөлийн мэдээлэл болон эмчилгээний үр дүн" 
+      <PageTitle
+        title="Өвчний бүртгэл"
+        desc="Өвчлөлийн мэдээлэл болон эмчилгээний үр дүн"
       />
-      
+
       <CrudTable<DiseaseRow>
         initialData={mock}
         searchKeys={["icd10", "nameMn"]}

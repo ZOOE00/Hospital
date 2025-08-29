@@ -9,11 +9,11 @@ const mockUsers: UserRow[] = [
 export function UsersPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Хэрэглэгчид" 
-        desc="Системийн хэрэглэгчдийн эрх болон мэдээлэл" 
+      <PageTitle
+        title="Хэрэглэгчид"
+        desc="Системийн хэрэглэгчдийн эрх болон мэдээлэл"
       />
-      
+
       <CrudTable<UserRow>
         initialData={mockUsers}
         searchKeys={["username"]}

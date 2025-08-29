@@ -29,11 +29,11 @@ const mockH: HospRow[] = [
 export function HospitalizationsPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Хэвтэн эмчилгээ" 
-        desc="Хэвтэн эмчилгээний бүртгэл болон мэдээлэл" 
+      <PageTitle
+        title="Хэвтэн эмчилгээ"
+        desc="Хэвтэн эмчилгээний бүртгэл болон мэдээлэл"
       />
-      
+
       <CrudTable<HospRow>
         initialData={mockH}
         searchKeys={["hospital", "ward", "diagnosis"]}

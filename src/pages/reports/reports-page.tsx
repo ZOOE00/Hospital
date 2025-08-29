@@ -15,11 +15,11 @@ const mockReports: ReportRow[] = [
 export function ReportsPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Тайлан" 
-        desc="Эмнэлгийн үйл ажиллагааны тайлан, статистик" 
+      <PageTitle
+        title="Тайлан"
+        desc="Эмнэлгийн үйл ажиллагааны тайлан, статистик"
       />
-      
+
       <CrudTable<ReportRow>
         initialData={mockReports}
         searchKeys={["period", "type"]}
@@ -30,13 +30,13 @@ export function ReportsPage() {
           { key: "generatedAt", title: "Үүссэн огноо" },
         ]}
         filterDefs={[
-          { 
-            name: "type", 
+          {
+            name: "type",
             options: [
               { label: "Өвчлөл", value: "disease" },
               { label: "Тоног төхөөрөмж", value: "equipment" },
               { label: "Ажилтан", value: "staff" },
-            ] 
+            ],
           },
         ]}
         onAdd={() => {

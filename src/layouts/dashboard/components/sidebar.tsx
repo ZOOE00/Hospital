@@ -1,7 +1,6 @@
 import SidebarItem from "./sidebar-item";
 import menus from "@configs/menus";
 import SidebarHeader from "./sidebar-header";
-import SidebarFooter from "./sidebar-footer";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useUserPreference from "@stores/user-preference";
 import clsx from "clsx";
@@ -13,41 +12,46 @@ export function Sidebar() {
     <>
       <aside
         className={clsx(
-          "transition-all duration-300 overflow-hidden fixed inset-y-0 left-0 z-10 hidden justify-center flex-col border-r bg-background sm:flex",
+          "transition-all duration-300 ease-in-out overflow-hidden fixed inset-y-0 left-0 z-50 flex flex-col border-r bg-background shadow-lg",
+          "hidden sm:flex", // Hide on mobile, show on desktop
           sidebarCollapsed ? "w-[60px]" : "w-[250px]"
         )}
       >
-        <nav className={clsx("flex flex-col gap-1 p-2 items-start")}>
+        <div className="flex h-full flex-col">
           <SidebarHeader />
 
-          {menus.map((m) => (
-            <SidebarItem
-              key={m.route}
-              icon={m.icon}
-              name={m.name}
-              route={m.route}
-            />
-          ))}
-        </nav>
-
-        <nav className="mt-auto flex flex-col items-start gap-4 px-2">
-          <SidebarFooter />
-        </nav>
+          <nav className="flex-1 space-y-1 p-2 overflow-y-auto">
+            {menus.map((m) => (
+              <SidebarItem
+                key={m.route}
+                icon={m.icon}
+                name={m.name}
+                route={m.route}
+                collapsible={!sidebarCollapsed}
+              />
+            ))}
+          </nav>
+        </div>
       </aside>
 
-      <div
+      {/* Toggle Button */}
+      <button
         onClick={toggleSidebar}
         className={clsx(
-          "transition-all duration-300 fixed z-20 top-[50%] h-[22px] w-[22px] cursor-pointer bg-primary hidden sm:flex items-center justify-center rounded-full text-primary-foreground",
+          "transition-all duration-300 ease-in-out fixed z-50 top-1/2 -translate-y-1/2",
+          "h-6 w-6 cursor-pointer bg-primary hover:bg-primary/90",
+          "hidden sm:flex items-center justify-center rounded-full text-primary-foreground",
+          "shadow-md border border-border/50",
           sidebarCollapsed ? "left-[48px]" : "left-[238px]"
         )}
+        aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
         {sidebarCollapsed ? (
-          <ChevronRight className="h-[18px] w-[18px]" />
+          <ChevronRight className="h-4 w-4" />
         ) : (
-          <ChevronLeft className="h-[18px] w-[18px]" />
+          <ChevronLeft className="h-4 w-4" />
         )}
-      </div>
+      </button>
     </>
   );
 }

@@ -25,11 +25,11 @@ const mockEq: EqRow[] = [
 export function EquipmentPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Тоног төхөөрөмж" 
-        desc="Эмнэлгийн тоног төхөөрөмжийн бүртгэл болон удирдлага" 
+      <PageTitle
+        title="Тоног төхөөрөмж"
+        desc="Эмнэлгийн тоног төхөөрөмжийн бүртгэл болон удирдлага"
       />
-      
+
       <CrudTable<EqRow>
         initialData={mockEq}
         searchKeys={["name", "model", "serial"]}

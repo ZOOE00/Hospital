@@ -41,7 +41,7 @@ export default function AddFormDialog<TForm>({
 
   // Load employee options when dialog opens and contains employee-select field
   useEffect(() => {
-    const hasEmployeeSelect = fields.some(f => f.type === "employee-select");
+    const hasEmployeeSelect = fields.some((f) => f.type === "employee-select");
     if (open && hasEmployeeSelect) {
       getEmployeesForSelect().then(setEmployeeOptions);
     }

@@ -23,11 +23,11 @@ const mockC: CheckupRow[] = [
 export function CheckupsPage() {
   return (
     <div className="w-full space-y-4">
-      <PageTitle 
-        title="Урьдчилан сэргийлэх үзлэг" 
-        desc="Эрүүл мэндийн урьдчилан сэргийлэх үзлэгийн бүртгэл" 
+      <PageTitle
+        title="Урьдчилан сэргийлэх үзлэг"
+        desc="Эрүүл мэндийн урьдчилан сэргийлэх үзлэгийн бүртгэл"
       />
-      
+
       <CrudTable<CheckupRow>
         initialData={mockC}
         searchKeys={["doctor", "org", "findingIcd"]}
