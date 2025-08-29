@@ -23,7 +23,7 @@ interface Props {
 function CrudToolbar({
   form,
   onAdd,
-  searchPlaceholder = "Search...",
+  searchPlaceholder = "Хайх...",
   filters = [],
 }: Props) {
   return (
@@ -53,7 +53,7 @@ function CrudToolbar({
 
       <div className="flex gap-2">
         <Button onClick={onAdd}>
-          <Plus className="h-4 w-4 mr-1" /> Add
+          <Plus className="h-4 w-4 mr-1" /> Нэмэх
         </Button>
       </div>
     </Between>

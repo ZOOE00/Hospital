@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { ColumnDef } from "@tanstack/react-table";
 import CrudToolbar from "./crud-toolbar";
@@ -8,6 +8,8 @@ import { DataTableColumnHeader } from "./data-table-column-header";
 import { CrudRowActions } from "./row-actions";
 import { Badge } from "@components/ui/badge";
 import { cn } from "@lib/utils";
+import AddFormDialog, { type FieldDef } from "./add-form-dialog";
+import EditFormDialog from "./edit-form-dialog";
 
 export type CrudRow = Record<string, any> & { id: string | number };
 
@@ -35,6 +37,21 @@ export default function CrudTable<T extends CrudRow>({
 
   const [page, setPage] = useState({ pageIndex: 0, pageSize: 10 });
   const [data, setData] = useState<T[]>(initialData);
+  const [addOpen, setAddOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const editingRef = useRef<T | null>(null);
+
+  const fields = useMemo<FieldDef[]>(() => {
+    const sample = (data[0] || {}) as T;
+    const keys = Object.keys(sample).filter((k) => k !== "id");
+    const selectSet = new Set((filterDefs || []).map((f) => f.name));
+    return keys.map((k) => ({
+      name: k,
+      label: humanize(k),
+      type: selectSet.has(k) ? "select" : "text",
+      options: filterDefs?.find((f) => f.name === k)?.options,
+    }));
+  }, [data, filterDefs]);
 
   const filtered = useMemo(() => {
     const { search, ...filterVals } = form.getValues();
@@ -54,6 +71,36 @@ export default function CrudTable<T extends CrudRow>({
       return matchesSearch && matchesFilters;
     });
   }, [data, form, searchKeys]);
+
+  const openAdd = useCallback(() => {
+    editingRef.current = null;
+    setAddOpen(true);
+  }, []);
+
+  const openEdit = useCallback((row: T) => {
+    editingRef.current = row;
+    setEditOpen(true);
+  }, []);
+
+  const handleAdd = useCallback((values: Partial<T>) => {
+    setData((prev) => {
+      const isNum = typeof (prev[0]?.id ?? 0) === "number";
+      const nextId = isNum
+        ? ((Math.max(0, ...prev.map((r) => Number(r.id))) + 1) as any)
+        : (String(Date.now()) as any);
+      return [...prev, { ...(values as any), id: nextId } as T];
+    });
+    setAddOpen(false);
+  }, []);
+
+  const handleEdit = useCallback((values: Partial<T>) => {
+    if (!editingRef.current) return;
+    const id = editingRef.current.id;
+    setData((prev) =>
+      prev.map((r) => (r.id === id ? ({ ...r, ...values, id } as T) : r))
+    );
+    setEditOpen(false);
+  }, []);
 
   const columns: ColumnDef<T, any>[] = useMemo(() => {
     const base: ColumnDef<T, any>[] = [];
@@ -107,7 +154,10 @@ export default function CrudTable<T extends CrudRow>({
       id: "actions",
       cell: ({ row }) => (
         <CrudRowActions
-          onEdit={() => onEdit?.(row.original)}
+          onEdit={() => {
+            onEdit?.(row.original);
+            openEdit(row.original);
+          }}
           onDelete={() => {
             onDelete?.(row.original);
             setData((prev) => prev.filter((r) => r.id !== row.original.id));
@@ -116,14 +166,18 @@ export default function CrudTable<T extends CrudRow>({
       ),
     });
     return base;
-  }, [data, onEdit, onDelete]);
+  }, [data, onEdit, onDelete, openEdit]);
+
+  // Handlers are memoized above
 
   return (
     <div className="space-y-4">
       <CrudToolbar
         form={form}
-        onAdd={() => onAdd?.()}
-        searchPlaceholder="Search..."
+        onAdd={() => {
+          onAdd?.();
+          openAdd();
+        }}
         filters={filterDefs.map((f) => ({ ...f, placeholder: f.name }))}
       />
       <DataTable
@@ -136,6 +190,20 @@ export default function CrudTable<T extends CrudRow>({
         paginationState={page}
         onPaginationChange={setPage as any}
         rowCount={filtered.length}
+      />
+
+      <AddFormDialog<T>
+        open={addOpen}
+        onOpenChange={setAddOpen}
+        fields={fields}
+        onSubmit={handleAdd}
+      />
+      <EditFormDialog<T>
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        fields={fields}
+        initialValues={editingRef.current}
+        onSubmit={handleEdit}
       />
     </div>
   );
@@ -198,3 +266,13 @@ function renderEnumBadge(field: string, value: string) {
     </Badge>
   );
 }
+
+// Utilities
+function humanize(key: string) {
+  return key
+    .replace(/([A-Z])/g, " $1")
+    .replace(/_/g, " ")
+    .replace(/^./, (s) => s.toUpperCase());
+}
+
+// (end component)

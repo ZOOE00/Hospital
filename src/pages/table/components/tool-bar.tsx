@@ -73,11 +73,11 @@ function Toolbar({ form }: Props) {
           <DropdownMenuContent align="end" className="space-y-1">
             <DropdownMenuItem>
               <Plus className="h-4 w-4 mr-1" />
-              Add New
+              Шинээр нэмэх
             </DropdownMenuItem>
             <DropdownMenuItem onClick={handleDownloadReport}>
               <ArrowDownFromLine className="h-4 w-4 mr-1" />
-              Download Report
+              Тайлан татах
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -139,7 +139,7 @@ function Toolbar({ form }: Props) {
 
           <Button onClick={handleDownloadReport}>
             <ArrowDownFromLine className="h-4 w-4 mr-1" />
-            Download Report
+            Тайлан татах
           </Button>
         </div>
       </Between>

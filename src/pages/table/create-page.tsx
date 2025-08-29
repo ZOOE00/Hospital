@@ -13,7 +13,6 @@ import TextareaInput from "@components/inputs/textarea-input";
 import { toast } from "sonner";
 import { normalFormSchema } from "./schemas/normal-form-schema";
 import { checkgpData, radioData, selectData } from "./mock-data/mock-data";
-import { useTranslation } from "react-i18next";
 import PageTitle from "@components/commons/page-title";
 
 type FormType = {
@@ -28,8 +27,6 @@ type FormType = {
 };
 
 export function TableCreatePage() {
-  const { t } = useTranslation();
-
   const form = useForm<FormType>({
     resolver: zodResolver(normalFormSchema),
     defaultValues: {
@@ -46,12 +43,15 @@ export function TableCreatePage() {
 
   function onSubmit(values: FormType) {
     console.log(values);
-    toast.success("Successfully submitted!");
+    toast.success("Амжилттай илгээгдлээ!");
   }
 
   return (
     <div className="w-full space-y-4">
-      <PageTitle title={t("table.pageTitle")} desc={t("table.pageDesc")} />
+      <PageTitle
+        title="Формын бүрдэл хэсгүүд"
+        desc="Валидацтай, дахин ашиглагдах оролтуудын жишээ"
+      />
 
       <div className="border rounded-lg p-4 w-full">
         <Form {...form}>
@@ -61,16 +61,16 @@ export function TableCreatePage() {
           >
             <div className="space-y-4">
               <TextInput
-                label="Text Input"
-                placeholder="Text input"
+                label="Текст"
+                placeholder="Текст"
                 name="textInput"
                 withAsterisk
                 form={form}
               />
 
               <SelectInput
-                label="Select Input"
-                placeholder="Select input"
+                label="Сонголт"
+                placeholder="Сонгох"
                 name="selectInput"
                 data={selectData}
                 withAsterisk
@@ -78,24 +78,24 @@ export function TableCreatePage() {
               />
 
               <DateInput
-                label="Date Input"
-                placeholder="Date input"
+                label="Огноо"
+                placeholder="Огноо"
                 name="dateInput"
                 withAsterisk
                 form={form}
               />
 
               <PasswordInput
-                label="Password Input"
-                placeholder="Password input"
+                label="Нууц үг"
+                placeholder="Нууц үг"
                 name="passwordInput"
                 withAsterisk
                 form={form}
               />
 
               <TextareaInput
-                label="Textarea Input"
-                placeholder="Textarea input"
+                label="Олон мөр текст"
+                placeholder="Олон мөр текст"
                 name="textareaInput"
                 withAsterisk
                 form={form}
@@ -104,15 +104,15 @@ export function TableCreatePage() {
 
             <div className="space-y-4">
               <TextInput
-                label="Text Input With Description"
-                placeholder="Text input"
-                description="This is text input with description"
+                label="Тайлбартай текст"
+                placeholder="Текст"
+                description="Тайлбартай текст оролт"
                 name="textInputWithDesc"
                 form={form}
               />
 
               <RadioInput
-                label="Radio Input"
+                label="Радио сонголт"
                 name="radioInput"
                 data={radioData}
                 withAsterisk
@@ -120,7 +120,7 @@ export function TableCreatePage() {
               />
 
               <CheckGroupInput
-                label="Check Group Input"
+                label="Олон сонголт"
                 name="checkgroupInput"
                 data={checkgpData}
                 withAsterisk
@@ -128,18 +128,18 @@ export function TableCreatePage() {
               />
 
               <CheckboxInput
-                label="Single Check Input"
+                label="Тэмдэглэх"
                 name="checkboxInput"
-                description="This is checkbox with description"
+                description="Тайлбартай чекбокс"
                 form={form}
               />
             </div>
 
             <div className="space-x-4">
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Илгээх</Button>
 
               <Button onClick={() => form.reset()} variant="secondary">
-                Reset
+                Цэвэрлэх
               </Button>
             </div>
           </form>

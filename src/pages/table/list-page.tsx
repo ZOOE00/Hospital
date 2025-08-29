@@ -6,7 +6,6 @@ import { useGetAllProducts } from "@apis/queries/product";
 import { PaginationState } from "@tanstack/react-table";
 import Toolbar from "./components/tool-bar";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
 type FormType = {
   category: string;
@@ -14,8 +13,6 @@ type FormType = {
 };
 
 export function TableList() {
-  const { t } = useTranslation();
-
   const toolbarForm = useForm<FormType>({
     defaultValues: {
       category: "",
@@ -36,7 +33,10 @@ export function TableList() {
 
   return (
     <div className="w-full space-y-4">
-      <PageTitle title={t("table.pageTitle")} desc={t("table.pageDesc")} />
+      <PageTitle
+        title="Өгөгдлийн хүснэгт — жишээ"
+        desc="Шүүлтүүр, хайлт, хуудсалтад бэлэн хүснэгтийн жишээ"
+      />
 
       <Toolbar form={toolbarForm} />
 

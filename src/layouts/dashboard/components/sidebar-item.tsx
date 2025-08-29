@@ -14,7 +14,6 @@ import {
   PopoverTrigger,
 } from "@components/ui/popover";
 import Text from "@components/commons/text";
-import { useTranslation } from "react-i18next";
 
 interface Props {
   icon?: ReactNode;
@@ -40,7 +39,6 @@ function SidebarItem({
   const { sidebarCollapsed } = useUserPreference();
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
 
   const [showChilds, setShowChilds] = useState<boolean>(false);
 
@@ -132,7 +130,7 @@ function SidebarItem({
                 {icon}
               </div>
             </TooltipTrigger>
-            <TooltipContent side="right">{t(name)}</TooltipContent>
+            <TooltipContent side="right">{name}</TooltipContent>
           </Tooltip>
         )}
       </>
@@ -155,7 +153,7 @@ function SidebarItem({
         <div className={clsx("flex items-center gap-2")}>
           <div>{icon}</div>
           <div className="min-w-[150px] overflow-hidden">
-            <Text>{t(name)}</Text>
+            <Text>{name}</Text>
           </div>
         </div>
 

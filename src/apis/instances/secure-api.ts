@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const secureApi = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_SECURE_API_URL || import.meta.env.VITE_API_URL,
   timeout: 1000,
 });
 

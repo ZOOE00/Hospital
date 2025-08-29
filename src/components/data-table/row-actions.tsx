@@ -35,10 +35,10 @@ export function CrudRowActions({ onEdit, onDelete }: Props) {
               onClick={onEdit}
             >
               <Pencil className="h-4 w-4" />
-              <span className="sr-only">Edit</span>
+              <span className="sr-only">Засварлах</span>
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Edit</TooltipContent>
+          <TooltipContent>Засварлах</TooltipContent>
         </Tooltip>
       </TooltipProvider>
 
@@ -53,28 +53,27 @@ export function CrudRowActions({ onEdit, onDelete }: Props) {
                   className="h-8 w-8 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-300 dark:hover:bg-rose-900/50"
                 >
                   <Trash2 className="h-4 w-4" />
-                  <span className="sr-only">Delete</span>
+                  <span className="sr-only">Устгах</span>
                 </Button>
               </DialogTrigger>
             </TooltipTrigger>
-            <TooltipContent>Delete</TooltipContent>
+            <TooltipContent>Устгах</TooltipContent>
           </Tooltip>
         </TooltipProvider>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete record?</DialogTitle>
+            <DialogTitle>Устгах уу?</DialogTitle>
             <DialogDescription>
-              This action cannot be undone. This will permanently delete the
-              record.
+              Энэ үйлдлийг буцаах боломжгүй. Мөр бүр мөсөн устгагдана.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Болих</Button>
             </DialogClose>
             <DialogClose asChild>
               <Button variant="destructive" onClick={onDelete}>
-                Delete
+                Устгах
               </Button>
             </DialogClose>
           </DialogFooter>
