@@ -13,11 +13,18 @@ import EditFormDialog from "./edit-form-dialog";
 
 export type CrudRow = Record<string, any> & { id: string | number };
 
+export type ColumnConfig = {
+  key: string;
+  title: string;
+  width?: number;
+};
+
 interface CrudTableProps<T extends CrudRow> {
   title?: string;
   initialData: T[];
   searchKeys?: (keyof T)[];
   filterDefs?: { name: string; options: DataType[] }[];
+  columnsConfig?: ColumnConfig[];
   onAdd?: () => void;
   onEdit?: (row: T) => void;
   onDelete?: (row: T) => void;
@@ -27,6 +34,7 @@ export default function CrudTable<T extends CrudRow>({
   initialData,
   searchKeys = ["id" as keyof T],
   filterDefs = [],
+  columnsConfig,
   onAdd,
   onEdit,
   onDelete,
@@ -45,13 +53,17 @@ export default function CrudTable<T extends CrudRow>({
     const sample = (data[0] || {}) as T;
     const keys = Object.keys(sample).filter((k) => k !== "id");
     const selectSet = new Set((filterDefs || []).map((f) => f.name));
-    return keys.map((k) => ({
-      name: k,
-      label: humanize(k),
-      type: selectSet.has(k) ? "select" : "text",
-      options: filterDefs?.find((f) => f.name === k)?.options,
-    }));
-  }, [data, filterDefs]);
+    return keys.map((k) => {
+      const columnConfig = columnsConfig?.find(c => c.key === k);
+      const label = columnConfig?.title || humanize(k);
+      return {
+        name: k,
+        label: label,
+        type: selectSet.has(k) ? "select" : "text",
+        options: filterDefs?.find((f) => f.name === k)?.options,
+      };
+    });
+  }, [data, filterDefs, columnsConfig]);
 
   const filtered = useMemo(() => {
     const { search, ...filterVals } = form.getValues();
@@ -131,11 +143,18 @@ export default function CrudTable<T extends CrudRow>({
 
     // Auto columns from keys (id, name, etc.) for demo; in real modules, define explicit columns.
     const sample = data[0] || ({} as T);
-    Object.keys(sample).forEach((key) => {
+    const keysToShow = columnsConfig 
+      ? columnsConfig.map(c => c.key)
+      : Object.keys(sample);
+    
+    keysToShow.forEach((key) => {
+      const columnConfig = columnsConfig?.find(c => c.key === key);
+      const title = columnConfig?.title || humanize(key);
+      
       base.push({
         accessorKey: key,
         header: ({ column }) => (
-          <DataTableColumnHeader column={column} title={String(key)} />
+          <DataTableColumnHeader column={column} title={title} />
         ),
         cell: ({ row }) => {
           const val = row.getValue(key);
@@ -144,8 +163,9 @@ export default function CrudTable<T extends CrudRow>({
             const rendered = renderEnumBadge(String(key), val);
             if (rendered) return rendered;
           }
-          return <div>{String(val)}</div>;
+          return <div className="font-medium">{String(val)}</div>;
         },
+        size: columnConfig?.width,
       } as ColumnDef<T>);
     });
 
@@ -166,7 +186,7 @@ export default function CrudTable<T extends CrudRow>({
       ),
     });
     return base;
-  }, [data, onEdit, onDelete, openEdit]);
+  }, [data, onEdit, onDelete, openEdit, columnsConfig]);
 
   // Handlers are memoized above
 

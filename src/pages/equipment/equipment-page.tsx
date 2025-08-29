@@ -1,4 +1,5 @@
 import CrudTable, { CrudRow } from "@components/data-table/crud-table";
+import PageTitle from "@components/commons/page-title";
 
 type EqRow = CrudRow & {
   name: string;
@@ -24,9 +25,23 @@ const mockEq: EqRow[] = [
 export function EquipmentPage() {
   return (
     <div className="w-full space-y-4">
+      <PageTitle 
+        title="Тоног төхөөрөмж" 
+        desc="Эмнэлгийн тоног төхөөрөмжийн бүртгэл болон удирдлага" 
+      />
+      
       <CrudTable<EqRow>
         initialData={mockEq}
         searchKeys={["name", "model", "serial"]}
+        columnsConfig={[
+          { key: "id", title: "ID" },
+          { key: "name", title: "Нэр" },
+          { key: "model", title: "Загвар" },
+          { key: "serial", title: "Серийн дугаар" },
+          { key: "startDate", title: "Ашиглалтын огноо" },
+          { key: "location", title: "Байршил" },
+          { key: "owner", title: "Хариуцагч" },
+        ]}
         filterDefs={[
           {
             name: "location",

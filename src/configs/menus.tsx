@@ -5,6 +5,7 @@ import {
   BedDouble,
   Wrench,
   Users,
+  UserCheck,
   Settings,
   HelpCircle,
   BarChart3,
@@ -17,9 +18,14 @@ const menus = [
     route: "/dashboard",
   },
   {
-    name: "Хүний нөөц",
+    name: "Хэрэглэгчид",
     icon: <Users className="h-[18px] w-[18px]" />,
     route: "/staff",
+  },
+  {
+    name: "Ажилтнууд",
+    icon: <UserCheck className="h-[18px] w-[18px]" />,
+    route: "/employees",
   },
   {
     name: "Урьдчилан сэргийлэх",

@@ -1,4 +1,5 @@
 import CrudTable, { CrudRow } from "@components/data-table/crud-table";
+import PageTitle from "@components/commons/page-title";
 
 type CheckupRow = CrudRow & {
   date: string;
@@ -22,16 +23,29 @@ const mockC: CheckupRow[] = [
 export function CheckupsPage() {
   return (
     <div className="w-full space-y-4">
+      <PageTitle 
+        title="Урьдчилан сэргийлэх үзлэг" 
+        desc="Эрүүл мэндийн урьдчилан сэргийлэх үзлэгийн бүртгэл" 
+      />
+      
       <CrudTable<CheckupRow>
         initialData={mockC}
         searchKeys={["doctor", "org", "findingIcd"]}
+        columnsConfig={[
+          { key: "id", title: "ID" },
+          { key: "date", title: "Огноо" },
+          { key: "type", title: "Төрөл" },
+          { key: "doctor", title: "Эмч" },
+          { key: "org", title: "Байгууллага" },
+          { key: "findingIcd", title: "Оношийн код" },
+        ]}
         filterDefs={[
           {
             name: "type",
             options: [
-              { label: "Full", value: "full" },
-              { label: "Partial", value: "partial" },
-              { label: "Repeat", value: "repeat" },
+              { label: "Бүрэн", value: "full" },
+              { label: "Хэсэгчилсэн", value: "partial" },
+              { label: "Давтан", value: "repeat" },
             ],
           },
         ]}

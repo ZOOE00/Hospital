@@ -1,4 +1,5 @@
 import CrudTable, { CrudRow } from "@components/data-table/crud-table";
+import PageTitle from "@components/commons/page-title";
 
 type DiseaseRow = CrudRow & {
   icd10: string;
@@ -24,22 +25,43 @@ const mock: DiseaseRow[] = [
 export function DiseasesPage() {
   return (
     <div className="w-full space-y-4">
+      <PageTitle 
+        title="Өвчний бүртгэл" 
+        desc="Өвчлөлийн мэдээлэл болон эмчилгээний үр дүн" 
+      />
+      
       <CrudTable<DiseaseRow>
         initialData={mock}
         searchKeys={["icd10", "nameMn"]}
+        columnsConfig={[
+          { key: "id", title: "ID" },
+          { key: "icd10", title: "ICD-10" },
+          { key: "nameMn", title: "Өвчний нэр" },
+          { key: "category", title: "Ангилал" },
+          { key: "treatmentType", title: "Эмчлэх төрөл" },
+          { key: "outcome", title: "Үр дүн" },
+          { key: "date", title: "Огноо" },
+        ]}
         filterDefs={[
           {
             name: "category",
             options: [
-              { label: "Respiratory", value: "respiratory" },
-              { label: "Cardio", value: "cardio" },
+              { label: "Амьсгалын замын", value: "respiratory" },
+              { label: "Зүрхний", value: "cardiac" },
             ],
           },
           {
             name: "treatmentType",
             options: [
-              { label: "Outpatient", value: "outpatient" },
-              { label: "Inpatient", value: "inpatient" },
+              { label: "Амбулатори", value: "outpatient" },
+              { label: "Хэвтэн эмчлэх", value: "inpatient" },
+            ],
+          },
+          {
+            name: "outcome",
+            options: [
+              { label: "Эдгэрсэн", value: "recovered" },
+              { label: "Эмчлэгдэж байгаа", value: "treating" },
             ],
           },
         ]}

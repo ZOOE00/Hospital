@@ -15,6 +15,7 @@ interface Props {
   withAsterisk?: boolean;
   name: string;
   form?: any;
+  type?: string;
 }
 
 function TextInput({
@@ -24,6 +25,7 @@ function TextInput({
   withAsterisk = false,
   name,
   form,
+  type = "text",
 }: Props) {
   return (
     <FormField
@@ -38,7 +40,7 @@ function TextInput({
             </FormLabel>
           )}
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input type={type} placeholder={placeholder} {...field} />
           </FormControl>
 
           {description && <FormDescription>{description}</FormDescription>}

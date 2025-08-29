@@ -1,4 +1,5 @@
 import CrudTable, { CrudRow } from "@components/data-table/crud-table";
+import PageTitle from "@components/commons/page-title";
 
 type HospRow = CrudRow & {
   admit: string;
@@ -28,13 +29,29 @@ const mockH: HospRow[] = [
 export function HospitalizationsPage() {
   return (
     <div className="w-full space-y-4">
+      <PageTitle 
+        title="Хэвтэн эмчилгээ" 
+        desc="Хэвтэн эмчилгээний бүртгэл болон мэдээлэл" 
+      />
+      
       <CrudTable<HospRow>
         initialData={mockH}
         searchKeys={["hospital", "ward", "diagnosis"]}
+        columnsConfig={[
+          { key: "id", title: "ID" },
+          { key: "admit", title: "Хүлээн авсан" },
+          { key: "discharge", title: "Гарсан" },
+          { key: "hospital", title: "Эмнэлэг" },
+          { key: "ward", title: "Тасаг" },
+          { key: "diagnosis", title: "Онош" },
+          { key: "outcome", title: "Үр дүн" },
+          { key: "days", title: "Хоног" },
+          { key: "workAbility", title: "Ажлын чадвар" },
+        ]}
         filterDefs={[
           {
             name: "outcome",
-            options: [{ label: "Recovered", value: "recovered" }],
+            options: [{ label: "Эдгэрсэн", value: "recovered" }],
           },
         ]}
         onAdd={() => {

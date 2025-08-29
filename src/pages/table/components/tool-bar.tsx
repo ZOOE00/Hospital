@@ -93,13 +93,13 @@ function Toolbar({ form }: Props) {
             )}
           >
             <TextInput
-              placeholder="Search Products"
+              placeholder="Бүтээгдэхүүн хайх"
               name="search"
               form={form}
             />
 
             <CategorySelect
-              placeholder="Choose Category"
+              placeholder="Ангилал сонгох"
               name="category"
               className="min-w-[200px]"
               form={form}
@@ -117,13 +117,13 @@ function Toolbar({ form }: Props) {
             )}
           >
             <TextInput
-              placeholder="Search Products"
+              placeholder="Бүтээгдэхүүн хайх"
               name="search"
               form={form}
             />
 
             <CategorySelect
-              placeholder="Choose Category"
+              placeholder="Ангилал сонгох"
               name="category"
               className="min-w-[200px]"
               form={form}
